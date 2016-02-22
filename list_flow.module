@@ -1,0 +1,50 @@
+<?php
+/**
+ * Implements hook_help().
+ *
+ * Displays help and module information.
+ *
+ * @param path 
+ *   Which path of the site we're using to display help
+ * @param arg 
+ *   Array that holds the current path as returned from arg() function
+ */
+function list_flow_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#list_flow":
+      return '<p>' . t("Helps in creating dependant lists and also being used as CCK field.") . '</p>';
+      break;
+  }
+} 
+
+/**
+ * Implements hook_theme().
+ */
+function list_flow_theme() {
+  return array(
+    'list_flow_config_form' => array(
+      'render element' => 'form',
+    ),
+    
+  );
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function list_flow_menu() {
+  $items = array();
+
+  $items['admin/config/content/list_flow'] = array(
+    'title' => 'List Flow',
+    'description' => 'Configuration for List flow module',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('list_flow_config_form'),
+    'access arguments' => array('access administration pages'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'list_flow.admin.inc',
+  );
+  
+  return $items;
+}

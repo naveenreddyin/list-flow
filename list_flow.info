@@ -1,0 +1,3 @@
+name = List Flow
+description = A module to help you create dependent lists.
+core = 7.x
